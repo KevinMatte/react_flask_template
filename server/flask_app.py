@@ -151,7 +151,8 @@ def get_model():
     return json_response(
         'success',
         {
-            'title': f'title for {APP_NAME}'
+            'title': f'title for {APP_NAME}',
+            'body': f'This body is loaded from {request.url}',
         }
     )
 

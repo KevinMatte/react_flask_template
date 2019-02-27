@@ -3,7 +3,10 @@ import {apiFetch} from "./general/Session";
 
 class App extends Component {
 
-    state = {};
+    state = {
+        title: "Loading...",
+        body: "This is a sample body that's to be loaded from the flask services."
+    };
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (!prevState.hasOwnProperty("model"))
@@ -33,9 +36,25 @@ class App extends Component {
     render() {
         let {model} = this.state;
         return (
-            <h1 className="App">
-                {model.title || "Loading..."}
-            </h1>
+            <div className="max_size">
+                <div className="flexVDisplay max_size">
+                    <h1 className="flexFixed flexAlignCenter">
+                        {model.title || "Loading..."}
+                    </h1>
+                    <div className="flexFixed flexHDisplay max_size">
+                        <div className="flexFixed">
+                            <ul>
+                                <li>Menu item one</li>
+                                <li>Menu item two</li>
+                                <li>Menu item three</li>
+                            </ul>
+                        </div>
+                        <div className="flexHStretched flexAlignMiddle ">
+                            {model.body}
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
