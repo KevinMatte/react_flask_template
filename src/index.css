@@ -58,6 +58,12 @@ html, body, #root, .container {
     flex-direction: row;
 }
 
+.flexCentered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .max_size {
     min-height: 100%;
     min-width: 100%;
