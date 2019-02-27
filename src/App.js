@@ -1,28 +1,43 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import {apiFetch} from "./general/Session";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    state = {};
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (!prevState.hasOwnProperty("model"))
+            return {
+                modelPromise: apiFetch('GET', '/sample/api/model'),
+                model: {},
+            };
+        else {
+            return prevState;
+        }
+    }
+
+    componentDidMount() {
+        if (this.state.modelPromise !== null) {
+            this.state.modelPromise.then(({status, result: model}) => {
+                if (status === "success") {
+                    this.setState({model, modelPromise: null});
+                } else {
+                    console.log('Failed to fetch model.')
+                    this.setState({modelPromise: null});
+                }
+            })
+        }
+    }
+
+
+    render() {
+        let {model} = this.state;
+        return (
+            <h1 className="App">
+                {model.title || "Loading..."}
+            </h1>
+        );
+    }
 }
 
 export default App;
