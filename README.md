@@ -24,6 +24,7 @@ There is a .idea/ directory for PyCharm.
 
 To use:
 * Clone this repository to a directory of your choice.
-* <pre>source setup.sh</pre> (Work in progress)
+* Either `rm -fr .git` or change the git origin to your own project. 
+* `source setup.sh` (Work in progress)
 
 

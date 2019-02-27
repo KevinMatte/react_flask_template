@@ -16,8 +16,10 @@ STATUS_SUCCESS = 'success'
 APP_NAME = os.environ.get("name", "sample")
 if __name__ == '__main__':
     ROOT_URL = f'/{APP_NAME}/'
+    ROOT_URL2 = f'/{APP_NAME}'
 else:
     ROOT_URL = '/'
+    ROOT_URL2 = '/'
 
 
 def get_literal(value):
@@ -127,6 +129,7 @@ def ui_root(filename):
 
 
 @APP.route(ROOT_URL)
+@APP.route(ROOT_URL2)
 def ui_root1():
     """Displays the root UI."""
     return send_build()
